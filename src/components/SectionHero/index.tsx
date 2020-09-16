@@ -6,13 +6,18 @@ import * as S from './styles'
 
 import { gaEvent } from 'utils/ga'
 import Container from 'components/Container'
-import { LandingPageProps } from 'types/api'
 import { getImageUrl } from 'utils/getImageUrl'
+import { HeaderProps, ImageProps } from 'types/api'
 
 const onClick = () =>
   gaEvent({ action: 'click', category: 'cta', label: 'hero button' })
 
-const SectionHero = ({ logo, header }: LandingPageProps) => (
+type Props = {
+  logo: ImageProps
+  header: HeaderProps
+}
+
+const SectionHero = ({ logo, header }: Props) => (
   <S.Wrapper>
     <Container>
       <Logo {...logo} />
