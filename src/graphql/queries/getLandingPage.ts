@@ -4,6 +4,14 @@ const GET_LANDING_PAGE = /* GraphQL*/ `
     url
   }
 
+  fragment socialLinks on Authors {
+    socialLinks {
+      id
+      title
+      url
+    }
+  }
+
   fragment logo on LandingPage {
     logo {
       ...imageData
@@ -26,12 +34,107 @@ const GET_LANDING_PAGE = /* GraphQL*/ `
 
   fragment sectionAboutProject on LandingPage {
     sectionAboutProject {
+      image {
+        ...imageData
+      }
+      title
+      description
+    }
+  }
+
+  fragment sectionTech on LandingPage {
+    sectionTech {
+      title
+      techIcons {
         image {
           ...imageData
         }
         title
+      }
+    }
+  }
+
+  fragment sectionConcepts on LandingPage {
+    sectionConcepts {
+      title
+      concepts {
+        id
+        title
+      }
+    }
+  }
+
+  fragment sectionModules on LandingPage {
+    sectionModules {
+      title
+      module {
+        id
+        title
+        subtitle
         description
       }
+    }
+  }
+
+  fragment sectionSchedule on LandingPage {
+    sectionSchedule {
+      title
+      description
+    }
+  }
+
+  fragment pricingBox on LandingPage {
+    pricingBox {
+      totalPrice
+      installmentsNumber
+      installmentPrice
+      benefits
+      button {
+        label
+        url
+      }
+    }
+  }
+
+  fragment sectionAboutUs on LandingPage {
+    sectionAboutUs {
+      title
+      authors {
+        id
+        photo {
+          ...imageData
+        }
+        name
+        role
+        ...socialLinks
+        description
+      }
+    }
+  }
+
+  fragment sectionReviews on LandingPage {
+    sectionReviews {
+      title
+      review {
+        id
+        photo {
+          ...imageData
+        }
+        name
+        text
+      }
+    }
+  }
+
+  fragment sectionFaq on LandingPage {
+    sectionFaq {
+      title
+      questions {
+        id
+        question
+        answer
+      }
+    }
   }
 
   query GET_LANDING_PAGE {
@@ -39,6 +142,14 @@ const GET_LANDING_PAGE = /* GraphQL*/ `
       ...logo
       ...header
       ...sectionAboutProject
+      ...sectionTech
+      ...sectionConcepts
+      ...sectionModules
+      ...sectionSchedule
+      ...pricingBox
+      ...sectionAboutUs
+      ...sectionReviews
+      ...sectionFaq
     }
   }
 `
